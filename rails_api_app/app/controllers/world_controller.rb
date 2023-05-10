@@ -1,5 +1,5 @@
 class WorldController < ApplicationController
   def show
-    render json: { name: 'wupsi' }
+    render status: :ok, json: { name: 'earth' }
   end
 end
