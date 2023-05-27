@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://httpbin.org/anything
+    body:
+      encoding: UTF-8
+      string: '{"one":"two"}'
+    headers:
+      User-Agent:
+      - Faraday v2.7.5
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      date:
+      - Sat, 27 May 2023 17:46:15 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '520'
+      connection:
+      - keep-alive
+      server:
+      - gunicorn/19.9.0
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: "{\n  \"args\": {}, \n  \"data\": \"{\\\"one\\\":\\\"two\\\"}\", \n
+        \ \"files\": {}, \n  \"form\": {}, \n  \"headers\": {\n    \"Accept\": \"*/*\",
+        \n    \"Accept-Encoding\": \"gzip;q=1.0,deflate;q=0.6,identity;q=0.3\", \n
+        \   \"Content-Length\": \"13\", \n    \"Content-Type\": \"application/json\",
+        \n    \"Host\": \"httpbin.org\", \n    \"User-Agent\": \"Faraday v2.7.5\",
+        \n    \"X-Amzn-Trace-Id\": \"Root=1-647241e7-7fd057715bfc09d60c999ab0\"\n
+        \ }, \n  \"json\": {\n    \"one\": \"two\"\n  }, \n  \"method\": \"POST\",
+        \n  \"origin\": \"87.123.240.210\", \n  \"url\": \"https://httpbin.org/anything\"\n}\n"
+  recorded_at: Sat, 27 May 2023 17:46:15 GMT
+recorded_with: VCR 6.1.0

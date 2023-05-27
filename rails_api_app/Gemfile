@@ -16,6 +16,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
 end
 
+group :test do
+  gem 'vcr', '6.1.0'
+end
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
