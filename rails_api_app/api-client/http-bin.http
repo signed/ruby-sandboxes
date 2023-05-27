@@ -1,0 +1,9 @@
+###
+POST https://httpbin.org/anything
+accept: application/json
+Content-Type: application/json
+
+{
+  "key": "value"
+}
+
