@@ -12,4 +12,17 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
+RSpec.configure do |config|
+  config.around do |example|
+
+    # Just disable the VCR, the configuration for its usage
+    # will be done in a shared_context
+    if example.metadata[:vcr]
+      example.run
+    else
+      VCR.turned_off { example.run }
+    end
+  end
+end
+
 require 'spec_helper'

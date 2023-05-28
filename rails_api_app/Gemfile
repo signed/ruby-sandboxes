@@ -18,6 +18,7 @@ end
 
 group :test do
   gem 'vcr', '6.1.0'
+  gem 'webmock', '3.18.1'
 end
 
 # Use the Puma web server [https://github.com/puma/puma]

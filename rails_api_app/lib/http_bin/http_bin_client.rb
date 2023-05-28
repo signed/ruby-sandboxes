@@ -13,7 +13,15 @@ module HttpBin
       response = @connection.post('/anything') do |req|
         req.body = body
       end
-      response.body
+      case response.status
+      when 200
+        body = response.body
+        {
+          'json' => body['json']
+        }
+      else
+        :failed
+      end
     end
   end
 end

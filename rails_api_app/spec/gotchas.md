@@ -7,4 +7,10 @@ RSpec puts `lib` on the `$LOAD_PATH` so that you can require files relative to i
 
 https://fabioperrella.github.io/10_tips_to_help_using_the_VCR_gem_in_your_ruby_test_suite.html
 https://dev.to/gathuku/testing-external-apis-with-vcr-in-rails-488m
+
 https://dev.to/jorgefernando1/configure-vcr-with-rspec-48gh
+- has good insights on how to do custom integration work into rspec
+
+# How to write a fake implementation of a 3rd party service with Sinatra
+
+https://thoughtbot.com/blog/how-to-stub-external-services-in-tests
