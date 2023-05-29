@@ -197,7 +197,7 @@ DEPENDENCIES
   faraday (= 2.7.5)
   puma (~> 5.0)
   rails (~> 7.0.4)
-  rspec-rails (~> 6.0.0)
+  rspec-rails (= 6.0.2)
   sqlite3 (~> 1.4)
   tzinfo-data
   vcr (= 6.1.0)
