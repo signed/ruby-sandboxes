@@ -1,2 +1,6 @@
 # show world
 GET http://localhost:3000/world
+
+
+###
+GET http://localhost:3000/external_service

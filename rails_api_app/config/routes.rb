@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get "world", to: "world#show"
+  get "external_service", to: "world#external_service"
 end
