@@ -7,6 +7,12 @@ require "sinatra/json"
 WebMock.disable_net_connect!(allow_localhost: true)
 
 class FakeHttpBin < Sinatra::Base
+
+  # inspired from https://github.com/Betterment/webvalve/blob/main/lib/webvalve/fake_service.rb
+  set :dump_errors, true
+  set :show_exceptions, false
+  set :raise_errors, true
+
   post '/anything' do
     status 500
   end
