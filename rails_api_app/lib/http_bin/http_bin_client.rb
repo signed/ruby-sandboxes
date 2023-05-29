@@ -22,6 +22,8 @@ module HttpBin
       else
         :failed
       end
+    rescue StandardError => _e
+      :failed
     end
   end
 end

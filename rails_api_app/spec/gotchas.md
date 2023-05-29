@@ -13,11 +13,14 @@ https://dev.to/jorgefernando1/configure-vcr-with-rspec-48gh
 
 # How to write a fake implementation of a 3rd party service with Sinatra
 
-https://github.com/Betterment/webvalve
 https://thoughtbot.com/blog/how-to-stub-external-services-in-tests
+https://github.com/zhengjia/sinatra-explained/blob/master/app/tutorial_2/tutorial_2.md
+
 https://morningcoffee.io/sinatra-app-with-rspec.html
 https://thoughtbot.com/blog/faking-apis-in-development-and-staging
 https://avdi.codes/zero-to-smoke-test-with-sinatra/
+
+https://github.com/Betterment/webvalve
 
 
 # How to setup webvalve?
