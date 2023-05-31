@@ -150,6 +150,10 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails_semantic_logger (4.12.0)
+      rack
+      railties (>= 5.1)
+      semantic_logger (~> 4.13)
     railties (7.0.5)
       actionpack (= 7.0.5)
       activesupport (= 7.0.5)
@@ -179,6 +183,8 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
+    semantic_logger (4.13.0)
+      concurrent-ruby (~> 1.0)
     sinatra (3.0.6)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -208,6 +214,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-22
 
 DEPENDENCIES
   bootsnap
@@ -215,6 +222,7 @@ DEPENDENCIES
   faraday (= 2.7.5)
   puma (= 6.3.0)
   rails (= 7.0.5)
+  rails_semantic_logger (= 4.12)
   rspec-rails (= 6.0.3)
   sinatra (= 3.0.6)
   sinatra-contrib (= 3.0.6)
@@ -224,7 +232,7 @@ DEPENDENCIES
   webmock (= 3.18.1)
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.3.25

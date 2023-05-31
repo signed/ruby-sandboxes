@@ -11,3 +11,7 @@
 1. https://github.com/varvet/pundit
 2. https://github.com/CanCanCommunity/cancancan
 
+# How to do logging in rails?
+
+[semantic logger](https://logger.rocketjob.io/) on [GitHub](https://github.com/reidmorrison/semantic_logger) seems to be [the favorit](https://www.reddit.com/r/rails/comments/118t23n/structured_logging_with_rails/).
+There is a [rails_semantic_logger](https://github.com/reidmorrison/rails_semantic_logger) version.
