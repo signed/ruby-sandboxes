@@ -32,18 +32,10 @@ module RailsApiApp
     config.rails_semantic_logger.add_file_appender = false
     config.rails_semantic_logger.format = FocusedFormatter.new
     config.semantic_logger.add_appender(io: $stdout, level: config.log_level, formatter: config.rails_semantic_logger.format)
-    config.rails_semantic_logger.started = false
-    config.rails_semantic_logger.processing = false
-    config.rails_semantic_logger.rendered = false
-
-    # config.rails_semantic_logger.add_file_appender = true
-    # config.rails_semantic_logger.format = :json
-    # config.semantic_logger.add_appender(file_name: "log/#{Rails.env}.json", formatter: :json)
-    # config.rails_semantic_logger.quiet_assets = true
-    # config.rails_semantic_logger.semantic = true
-    # config.rails_semantic_logger.started = false
-
-    # config.colorize_logging = false
+    #config.rails_semantic_logger.started = false
+    #config.rails_semantic_logger.processing = false
+    #config.rails_semantic_logger.rendered = false
+    #config.rails_semantic_logger.quiet_assets = true
 
     config.log_tags = {
       request_id: :request_id
