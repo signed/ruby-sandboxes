@@ -8,7 +8,17 @@ class FocusedFormatter < SemanticLogger::Formatters::Json
   end
 
   def level
-    hash[:level] = log.level
+    hash[:level] = log.level.upcase
     # skip level index
+  end
+
+  def thread_name
+    # not interested in the thread
+  end
+
+  def duration
+    return unless log.duration
+
+    hash[:duration_ms] = log.duration
   end
 end
