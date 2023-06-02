@@ -1,6 +1,8 @@
-# show world
+### call local world api
 GET http://localhost:3000/world
 
+### call local logger example
+GET http://localhost:3000/logger_example
 
-###
+### call api talking to external service
 GET http://localhost:3000/external_service
