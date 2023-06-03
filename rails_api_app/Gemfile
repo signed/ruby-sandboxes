@@ -11,6 +11,7 @@ gem "sqlite3", "1.6.3"
 
 gem 'faraday', '2.7.5'
 gem 'rails_semantic_logger', '4.12'
+gem 'dry-validation', '1.10'
 
 # Run against this stable release
 group :development, :test do

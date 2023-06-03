@@ -1,0 +1,1 @@
+1. `rails g scaffold star name:string`
