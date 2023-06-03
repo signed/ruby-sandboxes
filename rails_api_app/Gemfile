@@ -21,8 +21,9 @@ sinatra_version = '3.0.6'
 group :test do
   gem 'vcr', '6.1.0'
   gem 'webmock', '3.18.1'
-  gem 'sinatra', sinatra_version
-  gem 'sinatra-contrib', sinatra_version
+  # https://aaronlerch.github.io/blog/sinatra-bundler-and-the-global-namespace/
+  gem 'sinatra', sinatra_version, require: 'sinatra/base'
+  gem 'sinatra-contrib', sinatra_version, require: false
 end
 
 # Use the Puma web server [https://github.com/puma/puma]
