@@ -15,3 +15,11 @@
 
 [semantic logger](https://logger.rocketjob.io/) on [GitHub](https://github.com/reidmorrison/semantic_logger) seems to be [the favorit](https://www.reddit.com/r/rails/comments/118t23n/structured_logging_with_rails/).
 There is a [rails_semantic_logger](https://github.com/reidmorrison/rails_semantic_logger) version.
+
+# How to validate request data in controllers?
+
+https://blog.dennisokeeffe.com/blog/2022-02-23-dry-validation-with-rails
+
+# Where to get planetary information?
+
+https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html
