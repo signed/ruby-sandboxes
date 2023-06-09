@@ -1,4 +1,4 @@
-class MoonsController < ApplicationController
+class Api::MoonsController < ApplicationController
   before_action :set_moon, only: %i[ show update destroy ]
 
   # GET /moons

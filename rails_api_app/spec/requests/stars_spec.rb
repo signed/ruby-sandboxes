@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/stars", type: :request do
+RSpec.describe "/api/stars", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Star. As you add validations to Star, be sure to
   # adjust the attributes here as well.
@@ -35,7 +35,7 @@ RSpec.describe "/stars", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Star.create! valid_attributes
-      get stars_url, headers: valid_headers, as: :json
+      get api_stars_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -52,13 +52,13 @@ RSpec.describe "/stars", type: :request do
     context "with valid parameters" do
       it "creates a new Star" do
         expect {
-          post stars_url,
+          post api_stars_url,
                params: { star: valid_attributes }, headers: valid_headers, as: :json
         }.to change(Star, :count).by(1)
       end
 
       it "renders a JSON response with the new star" do
-        post stars_url,
+        post api_stars_url,
              params: { star: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -68,13 +68,13 @@ RSpec.describe "/stars", type: :request do
     context "with invalid parameters" do
       it "does not create a new Star" do
         expect {
-          post stars_url,
+          post api_stars_url,
                params: { star: invalid_attributes }, as: :json
         }.to change(Star, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new star" do
-        post stars_url,
+        post api_stars_url,
              params: { star: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))

@@ -1,6 +1,6 @@
 require 'http_bin/http_bin_client'
 
-class WorldController < ApplicationController
+class Api::WorldController < ApplicationController
   def show
     render status: :ok, json: { name: 'earth' }
   end

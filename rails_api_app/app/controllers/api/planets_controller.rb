@@ -1,4 +1,4 @@
-class PlanetsController < ApplicationController
+class Api::PlanetsController < ApplicationController
   before_action :set_planet, only: %i[ show update destroy ]
 
   # GET /planets

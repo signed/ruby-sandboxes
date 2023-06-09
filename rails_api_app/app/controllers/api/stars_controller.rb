@@ -1,4 +1,4 @@
-class StarsController < ApplicationController
+class Api::StarsController < ApplicationController
   before_action :set_star, only: %i[ show update destroy ]
 
   # GET /stars

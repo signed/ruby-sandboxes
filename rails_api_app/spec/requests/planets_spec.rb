@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/planets", type: :request do
+RSpec.describe "/api/planets", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Planet. As you add validations to Planet, be sure to
   # adjust the attributes here as well.
@@ -35,7 +35,7 @@ RSpec.describe "/planets", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Planet.create! valid_attributes
-      get planets_url, headers: valid_headers, as: :json
+      get api_planets_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -52,13 +52,13 @@ RSpec.describe "/planets", type: :request do
     context "with valid parameters" do
       it "creates a new Planet" do
         expect {
-          post planets_url,
+          post api_planets_url,
                params: { planet: valid_attributes }, headers: valid_headers, as: :json
         }.to change(Planet, :count).by(1)
       end
 
       it "renders a JSON response with the new planet" do
-        post planets_url,
+        post api_planets_url,
              params: { planet: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -68,13 +68,13 @@ RSpec.describe "/planets", type: :request do
     context "with invalid parameters" do
       it "does not create a new Planet" do
         expect {
-          post planets_url,
+          post api_planets_url,
                params: { planet: invalid_attributes }, as: :json
         }.to change(Planet, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new planet" do
-        post planets_url,
+        post api_planets_url,
              params: { planet: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))

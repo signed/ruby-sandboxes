@@ -1,9 +1,9 @@
 require 'rails_helper'
 require 'http_bin/http_bin_client_fake'
 
-describe WorldController, type: :request do
+describe Api::WorldController, type: :request do
   it 'GET /world' do
-    get '/world'
+    get '/api/world'
     expect(response).to have_http_status(:ok)
     body = JSON.parse(response.body)
     expect(body['name']).to eq('earth')
@@ -13,7 +13,7 @@ describe WorldController, type: :request do
     it 'forward response from successful call' do
       fake_http_bin_client.call_succeeds
 
-      get '/external_service'
+      get '/api/external_service'
       expect(response).to have_http_status(:ok)
       body = JSON.parse(response.body)
       expect(body).to eq('hello' => 'world')
@@ -22,7 +22,7 @@ describe WorldController, type: :request do
     it 'without a response from the external service we are out of business' do
       fake_http_bin_client.call_fails
 
-      get '/external_service'
+      get '/api/external_service'
       expect(response).to have_http_status(503)
     end
   end
