@@ -3,4 +3,8 @@ class ApplicationController < ActionController::API
     super
     payload[:user_id] = 42
   end
+
+  def json_body
+    JSON.parse(request.body.read)
+  end
 end

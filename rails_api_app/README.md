@@ -10,4 +10,17 @@ bundle binstubs rspec-core
 
 
 # working with json
+
+https://github.com/procore/blueprinter
 https://buttercms.com/blog/json-serialization-in-rails-a-complete-guide/
+https://github.com/thoughtbot/json_matchers
+
+# generate swagger docs from test
+
+https://github.com/rswag/rswag
+
+# How to generate test data?
+
+https://fabricationgem.org/
+https://thoughtbot.github.io/factory_bot/
+https://github.com/thoughtbot/factory_bot

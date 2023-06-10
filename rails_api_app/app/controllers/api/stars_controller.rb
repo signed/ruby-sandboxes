@@ -1,3 +1,42 @@
+require 'dry/types'
+require 'dry/validation'
+
+
+module Types
+  include Dry::Types()
+
+  StrippedString = Types::String.constructor(&:strip)
+end
+
+class NameSchema < Dry::Schema::JSON
+  define do
+    required(:name).value(:string, min_size?: 1)
+  end
+end
+
+class RadiusSchema < Dry::Schema::JSON
+  define do
+    required(:radius).value(:integer, gt?: 0)
+  end
+end
+
+class CreateStarSchema < Dry::Schema::JSON
+  define do
+    required(:star).hash(NameSchema.new & RadiusSchema.new)
+  end
+end
+
+class PatchStarSchema < Dry::Schema::JSON
+  define do
+    required(:star).hash do
+      #optional(:name).value(NameSchema.new)
+      #optional(:radius).value(RadiusSchema.new)
+      optional(:name).value(:string, min_size?: 1)
+      optional(:radius).value(:integer, gt?: 0)
+    end
+  end
+end
+
 class Api::StarsController < ApplicationController
   before_action :set_star, only: %i[ show update destroy ]
 
@@ -8,14 +47,12 @@ class Api::StarsController < ApplicationController
     render json: @stars
   end
 
-  # GET /stars/1
-  def show
-    render json: @star
-  end
-
   # POST /stars
   def create
-    @star = Star.new(star_params)
+    validation_result = CreateStarSchema.new.call(json_body)
+    return render status: :unprocessable_entity, json: nil if validation_result.failure?
+
+    @star = Star.new(validation_result.to_h[:star])
 
     if @star.save
       render json: @star, status: :created, location: api_star_url(@star)
@@ -24,9 +61,17 @@ class Api::StarsController < ApplicationController
     end
   end
 
+  # GET /stars/1
+  def show
+    render json: @star
+  end
+
   # PATCH/PUT /stars/1
   def update
-    if @star.update(star_params)
+    validation_result = PatchStarSchema.new.call(json_body)
+    return render status: :unprocessable_entity, json: nil if validation_result.failure?
+
+    if @star.update(validation_result.to_h[:star])
       render json: @star
     else
       render json: @star.errors, status: :unprocessable_entity
@@ -39,13 +84,10 @@ class Api::StarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_star
-      @star = Star.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def star_params
-      params.require(:star).permit(:name, :radius)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_star
+    @star = Star.find(params[:id])
+  end
+
 end

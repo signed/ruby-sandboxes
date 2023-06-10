@@ -25,6 +25,11 @@ https://blog.dennisokeeffe.com/blog/2022-02-23-dry-validation-with-rails
 
 https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html
 
+
+# What to use to build json apis?
+
+https://github.com/rails-api/active_model_serializers#alternatives
+
 # How to produce camel case json?
 
 https://github.com/okuramasafumi/alba
@@ -32,3 +37,7 @@ https://github.com/okuramasafumi/alba
 # Is there a coding style that helps to write more testable rails code?
 
 https://hanamimastery.com/episodes/7-untangle-your-app-with-dry-monads
+
+# dry-validation
+
+https://www.youtube.com/@lucaguidi1784/videos
