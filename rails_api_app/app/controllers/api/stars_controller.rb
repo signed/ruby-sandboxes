@@ -4,7 +4,7 @@ require 'dry/validation'
 module Types
   include Dry::Types()
 
-  StrippedString = Types::String.constructor(&:strip)
+  Radius = Integer.constrained(gt: 0)
 end
 
 class NameSchema < Dry::Schema::JSON
@@ -15,7 +15,7 @@ end
 
 class RadiusSchema < Dry::Schema::JSON
   define do
-    required(:radius).value(:integer, gt?: 0)
+    required(:radius).value(Types::Radius)
   end
 end
 
@@ -31,7 +31,7 @@ class PatchStarSchema < Dry::Schema::JSON
       #optional(:name).value(NameSchema.new)
       #optional(:radius).value(RadiusSchema.new)
       optional(:name).value(:string, min_size?: 1)
-      optional(:radius).value(:integer, gt?: 0)
+      optional(:radius).value(Types::Radius)
     end
   end
 end
