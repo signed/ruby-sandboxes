@@ -1,7 +1,6 @@
 require 'dry/types'
 require 'dry/validation'
 
-
 module Types
   include Dry::Types()
 
@@ -50,7 +49,7 @@ class Api::StarsController < ApplicationController
   # POST /stars
   def create
     validation_result = CreateStarSchema.new.call(json_body)
-    return render status: :unprocessable_entity, json: nil if validation_result.failure?
+    return head(:unprocessable_entity) if validation_result.failure?
 
     @star = Star.new(validation_result.to_h[:star])
 
@@ -69,7 +68,7 @@ class Api::StarsController < ApplicationController
   # PATCH/PUT /stars/1
   def update
     validation_result = PatchStarSchema.new.call(json_body)
-    return render status: :unprocessable_entity, json: nil if validation_result.failure?
+    return head(:unprocessable_entity) if validation_result.failure?
 
     if @star.update(validation_result.to_h[:star])
       render json: @star
