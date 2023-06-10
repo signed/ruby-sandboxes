@@ -1,8 +1,8 @@
 ### call local world api
-GET http://localhost:3000/world
+GET http://localhost:3000/api/world
 
 ### call local logger example
-GET http://localhost:3000/logger_example
+GET http://localhost:3000/api/logger_example
 
 ### call api talking to external service
-GET http://localhost:3000/external_service
+GET http://localhost:3000/api/external_service

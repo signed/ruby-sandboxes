@@ -18,7 +18,7 @@ class Api::StarsController < ApplicationController
     @star = Star.new(star_params)
 
     if @star.save
-      render json: @star, status: :created, location: @star
+      render json: @star, status: :created, location: api_star_url(@star)
     else
       render json: @star.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::StarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def star_params
-      params.require(:star).permit(:name)
+      params.require(:star).permit(:name, :radius)
     end
 end
