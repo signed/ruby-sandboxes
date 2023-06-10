@@ -4,12 +4,13 @@ require 'dry/validation'
 module Types
   include Dry::Types()
 
+  Name = String.constrained(min_size: 1)
   Radius = Integer.constrained(gt: 0)
 end
 
 class NameSchema < Dry::Schema::JSON
   define do
-    required(:name).value(:string, min_size?: 1)
+    required(:name).value(Types::Name)
   end
 end
 
@@ -30,7 +31,7 @@ class PatchStarSchema < Dry::Schema::JSON
     required(:star).hash do
       #optional(:name).value(NameSchema.new)
       #optional(:radius).value(RadiusSchema.new)
-      optional(:name).value(:string, min_size?: 1)
+      optional(:name).value(Types::Name)
       optional(:radius).value(Types::Radius)
     end
   end
