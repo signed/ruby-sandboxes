@@ -27,15 +27,19 @@ module RailsApiApp
     config.api_only = true
 
     # https://logger.rocketjob.io/rails
-    # https://github.com/reidmorrison/rails_semantic_logger/issues/117
-    $stdout.sync = true
-    config.rails_semantic_logger.add_file_appender = false
+    # https://github.com/reidmorrison/rails_semantic_logger
     config.rails_semantic_logger.format = FocusedFormatter.new
-    config.semantic_logger.add_appender(io: $stdout, level: config.log_level, formatter: config.rails_semantic_logger.format)
     #config.rails_semantic_logger.started = false
     #config.rails_semantic_logger.processing = false
     #config.rails_semantic_logger.rendered = false
     #config.rails_semantic_logger.quiet_assets = true
+    unless Rails.env == 'test'
+      # https://github.com/reidmorrison/rails_semantic_logger/issues/137#issuecomment-938095833
+      $stdout.sync = true
+      config.rails_semantic_logger.add_file_appender = false
+      config.semantic_logger.add_appender(io: $stdout, formatter: config.rails_semantic_logger.format)
+    end
+
 
     config.log_tags = {
       request_id: :request_id
