@@ -41,3 +41,7 @@ https://hanamimastery.com/episodes/7-untangle-your-app-with-dry-monads
 # dry-validation
 
 https://www.youtube.com/@lucaguidi1784/videos
+
+# Where do I get fake data?
+
+https://github.com/faker-ruby/faker
