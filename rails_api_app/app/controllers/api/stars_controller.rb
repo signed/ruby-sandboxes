@@ -1,24 +1,6 @@
 require 'dry/types'
 require 'dry/validation'
 
-module Types
-  include Dry::Types()
-
-  Name = String.constrained(min_size: 1)
-  Radius = Integer.constrained(gt: 0)
-end
-
-class NameSchema < Dry::Schema::JSON
-  define do
-    required(:name).value(Types::Name)
-  end
-end
-
-class RadiusSchema < Dry::Schema::JSON
-  define do
-    required(:radius).value(Types::Radius)
-  end
-end
 
 class CreateStarSchema < Dry::Schema::JSON
   define do

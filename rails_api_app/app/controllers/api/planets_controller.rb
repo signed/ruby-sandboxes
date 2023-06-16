@@ -1,6 +1,22 @@
 class Api::PlanetsController < ApplicationController
   before_action :set_planet, only: %i[ show update destroy ]
 
+  class CreatePlanetSchema < Dry::Schema::JSON
+    define do
+      required(:planet).hash(NameSchema.new & RadiusSchema.new & StarIdSchema.new)
+    end
+  end
+
+  class PatchPlanetSchema < Dry::Schema::JSON
+    define do
+      required(:planet).hash do
+        optional(:name).value(Types::Name)
+        optional(:radius).value(Types::Radius)
+        optional(:star_id).value(Types::NumericForeignKey)
+      end
+    end
+  end
+
   # GET /planets
   def index
     @planets = Planet.all
@@ -15,10 +31,13 @@ class Api::PlanetsController < ApplicationController
 
   # POST /planets
   def create
-    @planet = Planet.new(planet_params)
+    validation_result = CreatePlanetSchema.new.call(json_body)
+    return head(:unprocessable_entity) if validation_result.failure?
+
+    @planet = Planet.new(validation_result.to_h[:planet])
 
     if @planet.save
-      render json: @planet, status: :created, location: @planet
+      render json: @planet, status: :created, location: api_planet_url(@planet)
     else
       render json: @planet.errors, status: :unprocessable_entity
     end
@@ -26,7 +45,10 @@ class Api::PlanetsController < ApplicationController
 
   # PATCH/PUT /planets/1
   def update
-    if @planet.update(planet_params)
+    validation_result = PatchPlanetSchema.new.call(json_body)
+    return head(:unprocessable_entity) if validation_result.failure?
+
+    if @planet.update(validation_result.to_h[:planet])
       render json: @planet
     else
       render json: @planet.errors, status: :unprocessable_entity
@@ -39,13 +61,9 @@ class Api::PlanetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_planet
-      @planet = Planet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def planet_params
-      params.require(:planet).permit(:name, :radius, :star_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_planet
+    @planet = Planet.find(params[:id])
+  end
 end

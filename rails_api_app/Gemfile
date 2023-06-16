@@ -16,6 +16,7 @@ gem 'dry-validation', '1.10'
 # Run against this stable release
 group :development, :test do
   gem 'rspec-rails', '6.0.3'
+  gem 'factory_bot_rails', '6.2'
 end
 
 sinatra_version = '3.0.6'
