@@ -3,5 +3,3 @@ class StarIdSchema < Dry::Schema::JSON
     required(:star_id).value(Types::NumericForeignKey)
   end
 end
-
-

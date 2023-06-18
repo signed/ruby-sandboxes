@@ -1,21 +1,37 @@
 class Api::MoonsController < ApplicationController
   before_action :set_moon, only: %i[ show update destroy ]
 
-  # GET /moons
+  class CreateMoonSchema < Dry::Schema::JSON
+    define do
+      required(:moon).hash(NameSchema.new & RadiusSchema.new & PlanetIdSchema.new)
+    end
+  end
+
+  class PatchMoonSchema < Dry::Schema::JSON
+    define do
+      required(:moon).hash do
+        optional(:name).value(Types::Name)
+        optional(:radius).value(Types::Radius)
+        optional(:planet_id).value(Types::NumericForeignKey)
+      end
+    end
+  end
+
   def index
     @moons = Moon.all
 
     render json: @moons
   end
 
-  # GET /moons/1
   def show
     render json: @moon
   end
 
-  # POST /moons
   def create
-    @moon = Moon.new(moon_params)
+    validation_result = CreateMoonSchema.new.call(json_body)
+    return head(:unprocessable_entity) if validation_result.failure?
+
+    @moon = Moon.new(validation_result.to_h[:moon])
 
     if @moon.save
       render json: @moon, status: :created, location: api_moon_url(@moon)
@@ -24,28 +40,23 @@ class Api::MoonsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /moons/1
   def update
-    if @moon.update(moon_params)
+    validation_result = PatchMoonSchema.new.call(json_body)
+    return head(:unprocessable_entity) if validation_result.failure?
+
+    if @moon.update(validation_result.to_h[:moon])
       render json: @moon
     else
       render json: @moon.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /moons/1
   def destroy
     @moon.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_moon
       @moon = Moon.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def moon_params
-      params.require(:moon).permit(:name, :radius, :planet_id)
     end
 end
