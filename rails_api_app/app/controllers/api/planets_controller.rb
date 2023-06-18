@@ -34,12 +34,20 @@ class Api::PlanetsController < ApplicationController
     validation_result = CreatePlanetSchema.new.call(json_body)
     return head(:unprocessable_entity) if validation_result.failure?
 
-    @planet = Planet.new(validation_result.to_h[:planet])
+    args = validation_result.to_h[:planet]
 
-    if @planet.save
-      render json: @planet, status: :created, location: api_planet_url(@planet)
+    name = args[:name]
+    radius = args[:radius]
+    star_id = args[:star_id]
+    result = Universe::CreatePlanet.call(name, radius, star_id)
+
+    case result
+    when :failed
+      render head(:internal_server_error)
+      return
     else
-      render json: @planet.errors, status: :unprocessable_entity
+      @planet = result
+      render json: @planet, status: :created, location: api_planet_url(@planet)
     end
   end
 
