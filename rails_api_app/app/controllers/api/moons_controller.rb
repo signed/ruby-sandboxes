@@ -18,7 +18,7 @@ class Api::MoonsController < ApplicationController
     @moon = Moon.new(moon_params)
 
     if @moon.save
-      render json: @moon, status: :created, location: @moon
+      render json: @moon, status: :created, location: api_moon_url(@moon)
     else
       render json: @moon.errors, status: :unprocessable_entity
     end
