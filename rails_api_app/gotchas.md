@@ -45,3 +45,11 @@ https://www.youtube.com/@lucaguidi1784/videos
 # Where do I get fake data?
 
 https://github.com/faker-ruby/faker
+
+# What is the Service pattern in rails?
+
+https://stackoverflow.com/a/52526676
+
+# What does DHH think?
+
+https://www.youtube.com/watch?v=5hN6OZDyQtk
